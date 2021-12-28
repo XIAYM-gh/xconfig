@@ -12,22 +12,27 @@ Java平台上一个简单的配置支持库
 
 ### 一些限制
  您必须使用这样的行来作为配置，否则无法被正确读取:<br>
+
  ```properties
  key=value
  ```
+
  <br>
- 而不是:<br>
+ 而不是:
+
  ```properties
  key = value
  ```
 
 ### 使用
  在项目中引用:<br>
+
  ```java
  import xutils.xconfig.xconfig;
  ```
  <br>
  简单示例:<br>
+
  ```java
  import xutils.xconfig.xconfig;
 
@@ -50,6 +55,7 @@ Java平台上一个简单的配置支持库
  ```
  <br>
  使用 for/foreach:<br>
+
  ```java
  for(String item:x.keySet()){
    System.out.println("Key: "+item+" Value":x.get(item));
