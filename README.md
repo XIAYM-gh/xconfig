@@ -56,7 +56,7 @@ Java平台上一个简单的配置支持库
      x.set("key1","valueRight");
      x.newCommentLine("这是一条注释~");
      x.save();
-     //x.saveTo("save.properties");
+     //x.save("save.properties");
 
      System.out.println(x.get("key1"));
      System.out.println(x.get("key3","key3 不存在!"));
