@@ -8,6 +8,14 @@ import java.nio.charset.*;
 
 public class xconfig {
 
+        public static void main(String[] args){
+          xconfig x = new xconfig();
+          x.put("a","doge");
+          x.put("q","xd");
+          x.newCommentLine("xd");
+          x.saveTo("test.prop");
+        }
+
         private HashMap<String, String> props = new HashMap<String, String>();
         private HashMap<Integer, String> lines = new HashMap<Integer, String>();
         private HashMap<String, Integer> lineTrace = new HashMap<String, Integer>();
@@ -53,9 +61,17 @@ public class xconfig {
                 return this.props.getOrDefault(key, default_value);
         }
 
-        public ArrayList<String> getLines(){
+        public ArrayList<String> getLines_(){
                 ArrayList<String> returnArr = new ArrayList<String>();
                 for(int i:this.lines.keySet()){
+                  returnArr.add(this.lines.get(i));
+                }
+                return returnArr;
+        }
+
+        public ArrayList<String> getLines(){
+                ArrayList<String> returnArr = new ArrayList<String>();
+                for(int i=1;i<=this.lines.size();i++){
                   returnArr.add(this.lines.get(i));
                 }
                 return returnArr;
@@ -71,6 +87,17 @@ public class xconfig {
                   this.lines.put(this.lines.size()+1, key+"="+value);
                 }else{
                   this.lines.put(this.lineTrace.get(key), key+"="+value);
+                }
+        }
+
+        public boolean has(String key){
+                return this.props.containsKey(key);
+        }
+
+        public void remove(String key){
+                if(this.has(key)){
+                  this.lines.remove(this.lineTrace.get(key));
+                  this.props.remove(key);
                 }
         }
 
