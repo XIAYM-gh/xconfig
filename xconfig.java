@@ -11,16 +11,20 @@ public class xconfig {
         private HashMap<String, String> props = new HashMap<String, String>();
         private HashMap<Integer, String> lines = new HashMap<Integer, String>();
         private HashMap<String, Integer> lineTrace = new HashMap<String, Integer>();
+        private Long createTime = System.currentTimeMillis();
         private String fileDir = "";
 
-        public xconfig(String fileDir){
-                this.fileDir = fileDir;
+        public xconfig(String... fileDir){
+                if(fileDir.length > 0){
+                  this.fileDir = fileDir[0];
+                }
 
                 makeProps();
         }
 
         public void makeProps(){
                 try{
+                  if(!fileDir.equals("")){
                     int LinesCount = 1;
                     List<String> props = Files.readAllLines(Paths.get(this.fileDir));
                     for(String item:props){
@@ -33,6 +37,7 @@ public class xconfig {
                         }
                         LinesCount++;
                     }
+                  }
                 }catch (NoSuchFileException e){
                         // do nothing
                 }catch (IOException e){
@@ -70,11 +75,15 @@ public class xconfig {
         }
 
         public void newCommentLine(String comment){
-                this.lines.put(this.lines.size()+1, "#"+comment);
+                this.lines.put(this.lines.size()+1, "# "+comment);
         }
 
         public void save(){
-                this.saveTo(this.fileDir);
+                if(!this.fileDir.equals("")){
+                    this.saveTo(this.fileDir);
+                } else {
+                    this.saveTo("xconfig-save-" + this.createTime + ".properties");
+                }
         }
 
         public void saveTo(String path){
