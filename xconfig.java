@@ -8,14 +8,6 @@ import java.nio.charset.*;
 
 public class xconfig {
 
-        public static void main(String[] args){
-          xconfig x = new xconfig();
-          x.put("a","doge");
-          x.put("q","xd");
-          x.newCommentLine("xd");
-          x.saveTo("test.prop");
-        }
-
         private HashMap<String, String> props = new HashMap<String, String>();
         private HashMap<Integer, String> lines = new HashMap<Integer, String>();
         private HashMap<String, Integer> lineTrace = new HashMap<String, Integer>();
@@ -101,19 +93,23 @@ public class xconfig {
                 }
         }
 
+        public void newLine(String str){
+                this.lines.put(this.lines.size()+1, str);
+        }
+
         public void newCommentLine(String comment){
-                this.lines.put(this.lines.size()+1, "# "+comment);
+                this.newLine("# "+comment);
         }
 
         public void save(){
                 if(!this.fileDir.equals("")){
-                    this.saveTo(this.fileDir);
+                    this.save(this.fileDir);
                 } else {
-                    this.saveTo("xconfig-save-" + this.createTime + ".properties");
+                    this.save("xconfig-save-" + this.createTime + ".properties");
                 }
         }
 
-        public void saveTo(String path){
+        public void save(String path){
                 try{
                   Path p = Paths.get(path);
                   if(Files.exists(p)){

@@ -30,8 +30,9 @@ Java平台上一个简单的配置支持库
  - remove(key) : 如果存在key，则删除这个key
  - has(key) : 检查是否有这个key 返回 **boolean**
  - save() : 保存到原文件，如果未指定原文件则创建这样的文件: **xconfig-save-(创建时间毫秒).properties**
- - saveTo(path) : 保存到path路径
- - newCommentLine(comment) 向当前的最后一行添加注释
+ - save(path) : 保存到path路径
+ - newLine(str) : 向当前的最后一行添加任意内容 (如果是K-V需要下一次加载才能生效)
+ - newCommentLine(comment) : 向当前的最后一行添加注释
 
 ### 使用
  在项目中引用:<br>
