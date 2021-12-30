@@ -24,6 +24,15 @@ Java平台上一个简单的配置支持库
  key = value
  ```
 
+### 方法列表
+ - get(key,default) : 返回key的值，如果没有则返回default(default 可选)
+ - set(key,value) : 设置key的值，如果有相同key会覆盖
+ - remove(key) : 如果存在key，则删除这个key
+ - has(key) : 检查是否有这个key 返回 **boolean**
+ - save() : 保存到原文件，如果未指定原文件则创建这样的文件: **xconfig-save-(创建时间毫秒).properties**
+ - saveTo(path) : 保存到path路径
+ - newCommentLine(comment) 向当前的最后一行添加注释
+
 ### 使用
  在项目中引用:<br>
 
